@@ -103,55 +103,69 @@
 <li><p>打开系统命令行，找到npm的根目录，比如我的就是C:\Users\Program Files，不过如果你的路径已经在系统的Path中，直接输入node -v，npm -v查看node和npm的版本信息（再次提醒：命令行一定要用管理员身份打开），能够看到版本信息，说明nodejs的安装就完成了。</p>
 </li>
 </ol>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/1.png">
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/1.png" class>
 
 <h2 id="安装hexo博客框架"><a href="#安装hexo博客框架" class="headerlink" title="安装hexo博客框架"></a>安装hexo博客框架</h2><ol>
 <li>需要借助npm包管理器进行安装</li>
 </ol>
 <p>但是国内的镜像源速度太慢，先通过npm来安装一个cnpm（淘宝的源），在命令行输入npm install -g cnpm –registry=<a target="_blank" rel="noopener" href="http://registry.npm.taobao.org,这里也没有能留下图片,若是成功应该是能看出来的,它会显示花了多少秒.值得一提的是我安装成功后一直无法查看cnpm的版本,最后找到原因是因为没有将cnpm下载到的路径(显示出来的成功信息中可以看出来)放进系统的path中.这里简述一下在系统变量path下添加路径,右键此电脑(我的电脑),选择属性/">http://registry.npm.taobao.org，这里也没有能留下图片，若是成功应该是能看出来的，它会显示花了多少秒。值得一提的是我安装成功后一直无法查看cnpm的版本，最后找到原因是因为没有将cnpm下载到的路径（显示出来的成功信息中可以看出来）放进系统的Path中。这里简述一下在系统变量path下添加路径，右键此电脑（我的电脑），选择属性</a>…</p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C2.png"></p>
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2.png" class>
+
 <p>选择编辑后，添加需要的路径即可。然后命令行输入cnpm -v查看cnpm的版本信息</p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C3.png"></p>
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/3.png" class>
+
 <ol start="2">
 <li>利用cnpm安装hexo框架，在命令行输入cnpm install -g hexo-cli </li>
 </ol>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C4.png"></p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C5.png"></p>
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/4.png" class>
+
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/5.png" class>
+
 <p>出现以上内容，说明安装成功。此时可以查看hexo的版本（hexo -v），验证一下安装是否成功。</p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C6.png"></p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C7.png"></p>
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/6.png" class>
+
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/7.png" class>
+
 <p>只要你安装成功，便会出现以上内容。</p>
 <h2 id="使用hexo搭建博客"><a href="#使用hexo搭建博客" class="headerlink" title="使用hexo搭建博客"></a>使用hexo搭建博客</h2><ol>
 <li>在自己想要的位置建立一个空的文件夹，如我就在C:\Users\Lenovo路径下建立了一个名为HexoBlog的文件夹</li>
 </ol>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C8.png"></p>
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/8.png" class>
+
 <p>建立成功后，你会在该路径下看到该文件夹。所以如果搭建博客过程中，发生什么错误，可以直接将该文件夹删除，大不了从头来过。再进入该文件夹目录下（cd HexoBlog\），利用hexo生成博客(hexo init)</p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C9.png"></p>
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/9.png" class>
+
 <p>…生成成功会有提示语：Start blogging with Hexo!     然后启动博客，命令行输入hexo s</p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C10.png"></p>
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/10.png" class>
+
 <p>它提示此时可以再本地4000端口打开，在浏览器中输入localhost:4000，发现博客已经有了，并且默认创建了一篇名为Hello World的文章。这里简单说一下如何新建一篇博文，命令行输入hexo new “博文的标题”，在已经建立的文章目录下用文本编辑器打开直接在里面写博客，然后#返回blog目录，hexo clean #清理，hexo g #生成，hexo s便可以在4000端口查看。</p>
 <ol start="2">
 <li>将博客部署到github上</li>
 </ol>
 <p>首先登录自己的github账号，建立一个github仓库，github仓库命令必须要符合特定要求：username.github.io（username是你自己的用户名）</p>
 <p>然后回到命令行，在自己创建的博客目录下安装git部署插件，输入cnpm install –save hexo-deployer-git</p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C11.png"></p>
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/11.png" class>
+
 <p>命令行输入dir可以查看文件清单</p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C12.png"></p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C13.png"></p>
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/12.png" class>
+
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/13.png" class>
+
 <p>_config.yml是重要的配置文件，这里用notepad打开（也可以用其他的方式打开）。</p>
 <img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/14.png" style="zoom:80%;">
 
 <p>照上图的红框内添加相应设置（第二个设置为你自己的仓库地址），修改后保存关闭即可。下面部署到github仓库里，命令行输入hexo d，部署完毕后在浏览器输入你仓库的地址username.github.io便可查看博客。部署成功后，输入地址时：这里我又出现了一个小插曲，出现了404错误</p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C15.png"></p>
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/15.png" class>
+
 <p>一开始以为是网络的问题，刷新了多次，还是不行。最后重新在命令行输入hexo d，再次输入地址，发现出现了一个小提示，意思为是否允许什么操作（第一次也出现了只是被我忽略了），点击允许，便出现</p>
-<p><img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%5C16.png"></p>
+<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/16.png" class>
+
 <p>这是刷新界面便可以看到博客了。至此，大功告成！！！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="ckgqlv6d40000tsst21ke7zmx" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="ckgqmu6jt000040st2ggeb7da" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" rel="tag">第一篇博客</a></li></ul>
@@ -202,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/23/hello-world/" data-id="ckgqlv6da0003tsstdxh74iu9" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/23/hello-world/" data-id="ckgqmu6jx000140stfjos64sa" class="article-share-link">Share</a>
       
       
     </footer>
