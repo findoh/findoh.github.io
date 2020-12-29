@@ -152,6 +152,128 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C-学习笔记之const" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/28/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bconst/">C++学习笔记之const</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/28/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bconst/" class="archive-article-date">
+  	<time datetime="2020-12-28T13:45:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>const限定符有很多独特的规则，在学习中经常有搞不清楚，概念不清晰等情况，在学习《C++ Primer》一书中，对涉及const的情况作了相应的整理和汇总。</p>
+</blockquote>
+<p>const对象必须初始化。在利用一个对象为const对象初始化时，该对象无论是不是const都无所谓，const对象的常量特征只有在执行改变const对象的操作（该操作不被允许）时才会发挥作用。</p>
+<p>consnt对象只在文件内有效，为了能够在多个文件中的共享const对象，必须在变量的定义之前添加extern关键字。  </p>
+<hr>
+<h3 id="1-const的引用"><a href="#1-const的引用" class="headerlink" title="1. const的引用"></a>1. const的引用</h3><p>一般，引用的类型必须与其所引用对象的类型一致，此处有一个例外：在初始化常量引用时允许用任意表达式作为初始值，只要该表达式的结果能够转换成引用的类型即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> dval = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;ri = dval;</span><br></pre></td></tr></table></figure>
+
+<p>编译器会将上述代码变成</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> temp = dval;    <span class="comment">//由双精度浮点数生成一个临时的整型变量</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;ri = temp;     <span class="comment">//让ri绑定这个临时量</span></span><br></pre></td></tr></table></figure>
+
+<p>对const的引用可能引用一个并非const的对象，常量引用仅对可参与的操作做出了限定，对于引用的对象本身是不是一个常量未作限定。</p>
+<h3 id="2-指针和const"><a href="#2-指针和const" class="headerlink" title="2. 指针和const"></a>2. 指针和const</h3><h4 id="指向常量的指针"><a href="#指向常量的指针" class="headerlink" title="指向常量的指针"></a>指向常量的指针</h4><p>与引用一样，指针可以指向常量和非常量。指向常量的指针不能用于改变其所指对象的值。指针的类型必须与其所指对象的类型一致，此处有一例外：允许另一个指向常量的指针指向一个非常量对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cptr = &amp;pi;</span><br><span class="line"><span class="keyword">double</span> dval = <span class="number">3.14</span>;</span><br><span class="line">cptr = &amp;dval;</span><br></pre></td></tr></table></figure>
+
+<h4 id="常量指针"><a href="#常量指针" class="headerlink" title="常量指针"></a>常量指针</h4><p>把*放在const关键字之前用以说明指针是一个常量，即常量指针，指不变的是指针本身而非指向的那个值。常量指针必须初始化。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> errNumb = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> curErr = &amp;errNumb; <span class="comment">//curErr将一直指向errNumb</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-顶层const与底层const"><a href="#3-顶层const与底层const" class="headerlink" title="3. 顶层const与底层const"></a>3. 顶层const与底层const</h3><p>顶层const可表示任意的对象是常量，对任何数据类型都适用，如算术类型、类、指针等；底层const则与指针和引用等复合类型部分有关。指针既可以是顶层const也可以是底层const，顶层const表示指针本身是个常量，底层const表示指针所指的对象是一个常量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> p1 = &amp;i; <span class="comment">//不能改变p1的值，是一个顶层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = <span class="number">42</span>; <span class="comment">//不能改变ci的值，是一个顶层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p2 = &amp;ci; <span class="comment">//允许改变p2的值，是一个底层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *<span class="keyword">const</span> p3 = p2;<span class="comment">//靠右的const是顶层const，靠左的是底层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r = ci; <span class="comment">//用于声明引用的const都是底层const</span></span><br></pre></td></tr></table></figure>
+
+<p>执行拷贝操作时，拷入和拷出的对象都必须具有相同的底层const资格，或者两个对象的数据类型必须能够转换。一般来说，非常量可转换为常量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = p3; <span class="comment">//错误：p3包含底层const的定义，而p没有</span></span><br><span class="line">p2 = p3; <span class="comment">//正确：p2和p3都是底层const</span></span><br><span class="line">p2 = &amp;i; <span class="comment">//正确：int*能转换成const int*</span></span><br><span class="line"><span class="keyword">int</span> &amp;i = ci; <span class="comment">//错误：普通的int&amp;不能绑定到int常量上</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r2 = i; <span class="comment">//正确： const int&amp;可以转换到一个普通int上</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-constexpr和const对指针的不同作用"><a href="#4-constexpr和const对指针的不同作用" class="headerlink" title="4. constexpr和const对指针的不同作用"></a>4. constexpr和const对指针的不同作用</h3><p>声明为constexpr类型的变量由编译器来验证变量的值是否时一个常量表达式（是指值不会改变且在编译过程就能得到计算结果的表达式）。限定符conxtexpr仅对指针有效，与指针所指的对象无关：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p = <span class="literal">nullptr</span>; <span class="comment">//p是一个指向整型常量的指针</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> *q = <span class="literal">nullptr</span>; <span class="comment">//q是一个指向整数的常量指针</span></span><br></pre></td></tr></table></figure>
+
+<p>与其他指针一样，constexpr指针既可以指向常量也可以指向一个非常量：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> i = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keyword">int</span> *p1 = &amp;i; <span class="comment">//p1是常量指针，指向整型常量i</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> *p2 = &amp;j; <span class="comment">//p2是常量指针，指向整数j</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-指针、const和类型别名"><a href="#5-指针、const和类型别名" class="headerlink" title="5. 指针、const和类型别名"></a>5. 指针、const和类型别名</h3><p>体会下以下代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">typeodef <span class="keyword">char</span> *pstring;</span><br><span class="line"><span class="keyword">const</span> pstring cstr = <span class="number">0</span>; <span class="comment">//cstr是指向char的常量指针</span></span><br><span class="line"><span class="keyword">const</span> pstring *ps; <span class="comment">//ps是一个指针，它的对象是指向char的常量指针</span></span><br></pre></td></tr></table></figure>
+
+<p>篇string实际上是指向char的指针，const pstring 就是指向char的常量指针，而非指向常量字符的指针。不能尝试把类型别名替换为原来的样子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cstr = <span class="number">0</span>；<span class="comment">//是对const pstringcstr的错误理解</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-复合类型、const和auto"><a href="#6-复合类型、const和auto" class="headerlink" title="6. 复合类型、const和auto"></a>6. 复合类型、const和auto</h3><p>auto类型说明符是让编译器替我们分析表达式所属的类型。</p>
+<p>auto一般会忽略掉顶层const，底层的const则会保留下来，如当初始值是一个指向常量的指针时：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = i, &amp;cr = ci;</span><br><span class="line"><span class="keyword">auto</span> b = ci; <span class="comment">//b是一个整数（ci的顶层const特性被忽略掉了）</span></span><br><span class="line"><span class="keyword">auto</span> c = cr; <span class="comment">//c是一个整数（cr是ci的别名，ci本身是一个顶层const）</span></span><br><span class="line"><span class="keyword">auto</span> d = &amp;i; <span class="comment">//d是一个整型指针（整数的地址就是指向整数的指针）</span></span><br><span class="line"><span class="keyword">auto</span> e = &amp;ci; <span class="comment">//e是一个指向整数常量的指针（对常量对象取地址是一种底层const）</span></span><br></pre></td></tr></table></figure>
+
+<p>要在一条语句中定义多个变量，切记，符号&amp;和*只从属于某个声明符，而非基本数据类型的一部分，因此初始值必须是同一种类型：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> &amp;m = ci,*p = &amp;ci; <span class="comment">//m是对整型常量的引用，p是指向整型常量的指针</span></span><br><span class="line"><span class="keyword">auto</span> &amp;n = i,*p2 = &amp;ci; <span class="comment">//错误：i的类型是int而&amp;ci的类型是const int</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-指针或引用形参与const"><a href="#7-指针或引用形参与const" class="headerlink" title="7. 指针或引用形参与const"></a>7. 指针或引用形参与const</h3><p>形参的初始化与变量的而初始化是一样的，可以适用非常量初始化一个底层const对象，但是反过来不行；同时一个普通的引用必须用同类型的对象初始化。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//reset函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">(<span class="keyword">int</span> *ip)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    *ip = <span class="number">0</span>;</span><br><span class="line">    ip = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">(<span class="keyword">int</span> &amp;i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//主函数中的reset函数的调用</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = i;</span><br><span class="line"><span class="built_in">string</span>::size_type ctr = <span class="number">0</span>;</span><br><span class="line">reset(&amp;i); <span class="comment">//调用形参类型是int*的reset函数</span></span><br><span class="line">reset(&amp;ci); <span class="comment">//错误：不能用指向const int对象的指针初始化int*</span></span><br><span class="line">reset(i); <span class="comment">//调用形参类型是int&amp;的reset函数</span></span><br><span class="line">reset(ci); <span class="comment">//错误：不能把普通引用绑定到const对象ci上</span></span><br><span class="line">reset(<span class="number">42</span>);; <span class="comment">//错误：不能把普通引用绑定到字面值上</span></span><br><span class="line">reset(ctr); <span class="comment">//错误：类型不匹配，ctr是无符号类型</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>以上是关于const的一些总结和初级理解，希望对您全面掌握const的使用规则有一定的帮助。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">关于const的学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/28/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bconst/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-follow程序羊up主搭建hexo个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -469,6 +591,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">第一篇博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">关于const的学习</a>
               </li>
             
             <div class="clearfix"></div>
