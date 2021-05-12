@@ -57,17 +57,22 @@
 	        
 			</ul>
 		</nav>
-		<nav class="header-smart-menu">
-    		
+
+		<nav class="header-smart-menu" style="margin:0;">
+		<span id="busuanzi_container_page_pv" style="color:#b0a0aa;font-size:14px;">  总访问量<span id="busuanzi_value_page_pv"></span>次</span>
+		<br/>
+		
     			
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
-            
+            		
     			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
-            
+            		
 		</nav>
+
+		
 		<nav class="header-nav">
 			<div class="social">
 				
@@ -163,6 +168,7 @@
 </a>
         
       </header>
+
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -171,52 +177,15 @@
 </blockquote>
 <p>const对象必须初始化。在利用一个对象为const对象初始化时，该对象无论是不是const都无所谓，const对象的常量特征只有在执行改变const对象的操作（该操作不被允许）时才会发挥作用。</p>
 <p>consnt对象只在文件内有效，为了能够在多个文件中的共享const对象，必须在变量的定义之前添加extern关键字。  </p>
-<hr>
-<h3 id="1-const的引用"><a href="#1-const的引用" class="headerlink" title="1. const的引用"></a>1. const的引用</h3><p>一般，引用的类型必须与其所引用对象的类型一致，此处有一个例外：在初始化常量引用时允许用任意表达式作为初始值，只要该表达式的结果能够转换成引用的类型即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> dval = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;ri = dval;</span><br></pre></td></tr></table></figure>
-
-<p>编译器会将上述代码变成</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> temp = dval;    <span class="comment">//由双精度浮点数生成一个临时的整型变量</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;ri = temp;     <span class="comment">//让ri绑定这个临时量</span></span><br></pre></td></tr></table></figure>
-
-<p>对const的引用可能引用一个并非const的对象，常量引用仅对可参与的操作做出了限定，对于引用的对象本身是不是一个常量未作限定。</p>
-<h3 id="2-指针和const"><a href="#2-指针和const" class="headerlink" title="2. 指针和const"></a>2. 指针和const</h3><h4 id="指向常量的指针"><a href="#指向常量的指针" class="headerlink" title="指向常量的指针"></a>指向常量的指针</h4><p>与引用一样，指针可以指向常量和非常量。指向常量的指针不能用于改变其所指对象的值。指针的类型必须与其所指对象的类型一致，此处有一例外：允许另一个指向常量的指针指向一个非常量对象</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cptr = &amp;pi;</span><br><span class="line"><span class="keyword">double</span> dval = <span class="number">3.14</span>;</span><br><span class="line">cptr = &amp;dval;</span><br></pre></td></tr></table></figure>
-
-<h4 id="常量指针"><a href="#常量指针" class="headerlink" title="常量指针"></a>常量指针</h4><p>把*放在const关键字之前用以说明指针是一个常量，即常量指针，指不变的是指针本身而非指向的那个值。常量指针必须初始化。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> errNumb = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> curErr = &amp;errNumb; <span class="comment">//curErr将一直指向errNumb</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-顶层const与底层const"><a href="#3-顶层const与底层const" class="headerlink" title="3. 顶层const与底层const"></a>3. 顶层const与底层const</h3><p>顶层const可表示任意的对象是常量，对任何数据类型都适用，如算术类型、类、指针等；底层const则与指针和引用等复合类型部分有关。指针既可以是顶层const也可以是底层const，顶层const表示指针本身是个常量，底层const表示指针所指的对象是一个常量。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> p1 = &amp;i; <span class="comment">//不能改变p1的值，是一个顶层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = <span class="number">42</span>; <span class="comment">//不能改变ci的值，是一个顶层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p2 = &amp;ci; <span class="comment">//允许改变p2的值，是一个底层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *<span class="keyword">const</span> p3 = p2;<span class="comment">//靠右的const是顶层const，靠左的是底层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r = ci; <span class="comment">//用于声明引用的const都是底层const</span></span><br></pre></td></tr></table></figure>
-
-<p>执行拷贝操作时，拷入和拷出的对象都必须具有相同的底层const资格，或者两个对象的数据类型必须能够转换。一般来说，非常量可转换为常量。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = p3; <span class="comment">//错误：p3包含底层const的定义，而p没有</span></span><br><span class="line">p2 = p3; <span class="comment">//正确：p2和p3都是底层const</span></span><br><span class="line">p2 = &amp;i; <span class="comment">//正确：int*能转换成const int*</span></span><br><span class="line"><span class="keyword">int</span> &amp;i = ci; <span class="comment">//错误：普通的int&amp;不能绑定到int常量上</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r2 = i; <span class="comment">//正确： const int&amp;可以转换到一个普通int上</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4-constexpr和const对指针的不同作用"><a href="#4-constexpr和const对指针的不同作用" class="headerlink" title="4. constexpr和const对指针的不同作用"></a>4. constexpr和const对指针的不同作用</h3><p>声明为constexpr类型的变量由编译器来验证变量的值是否时一个常量表达式（是指值不会改变且在编译过程就能得到计算结果的表达式）。限定符conxtexpr仅对指针有效，与指针所指的对象无关：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p = <span class="literal">nullptr</span>; <span class="comment">//p是一个指向整型常量的指针</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> *q = <span class="literal">nullptr</span>; <span class="comment">//q是一个指向整数的常量指针</span></span><br></pre></td></tr></table></figure>
-
-<p>与其他指针一样，constexpr指针既可以指向常量也可以指向一个非常量：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> i = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keyword">int</span> *p1 = &amp;i; <span class="comment">//p1是常量指针，指向整型常量i</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> *p2 = &amp;j; <span class="comment">//p2是常量指针，指向整数j</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="5-指针、const和类型别名"><a href="#5-指针、const和类型别名" class="headerlink" title="5. 指针、const和类型别名"></a>5. 指针、const和类型别名</h3><p>体会下以下代码</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">typeodef <span class="keyword">char</span> *pstring;</span><br><span class="line"><span class="keyword">const</span> pstring cstr = <span class="number">0</span>; <span class="comment">//cstr是指向char的常量指针</span></span><br><span class="line"><span class="keyword">const</span> pstring *ps; <span class="comment">//ps是一个指针，它的对象是指向char的常量指针</span></span><br></pre></td></tr></table></figure>
-
-<p>篇string实际上是指向char的指针，const pstring 就是指向char的常量指针，而非指向常量字符的指针。不能尝试把类型别名替换为原来的样子：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cstr = <span class="number">0</span>；<span class="comment">//是对const pstringcstr的错误理解</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="6-复合类型、const和auto"><a href="#6-复合类型、const和auto" class="headerlink" title="6. 复合类型、const和auto"></a>6. 复合类型、const和auto</h3><p>auto类型说明符是让编译器替我们分析表达式所属的类型。</p>
-<p>auto一般会忽略掉顶层const，底层的const则会保留下来，如当初始值是一个指向常量的指针时：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = i, &amp;cr = ci;</span><br><span class="line"><span class="keyword">auto</span> b = ci; <span class="comment">//b是一个整数（ci的顶层const特性被忽略掉了）</span></span><br><span class="line"><span class="keyword">auto</span> c = cr; <span class="comment">//c是一个整数（cr是ci的别名，ci本身是一个顶层const）</span></span><br><span class="line"><span class="keyword">auto</span> d = &amp;i; <span class="comment">//d是一个整型指针（整数的地址就是指向整数的指针）</span></span><br><span class="line"><span class="keyword">auto</span> e = &amp;ci; <span class="comment">//e是一个指向整数常量的指针（对常量对象取地址是一种底层const）</span></span><br></pre></td></tr></table></figure>
-
-<p>要在一条语句中定义多个变量，切记，符号&amp;和*只从属于某个声明符，而非基本数据类型的一部分，因此初始值必须是同一种类型：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> &amp;m = ci,*p = &amp;ci; <span class="comment">//m是对整型常量的引用，p是指向整型常量的指针</span></span><br><span class="line"><span class="keyword">auto</span> &amp;n = i,*p2 = &amp;ci; <span class="comment">//错误：i的类型是int而&amp;ci的类型是const int</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="7-指针或引用形参与const"><a href="#7-指针或引用形参与const" class="headerlink" title="7. 指针或引用形参与const"></a>7. 指针或引用形参与const</h3><p>形参的初始化与变量的而初始化是一样的，可以适用非常量初始化一个底层const对象，但是反过来不行；同时一个普通的引用必须用同类型的对象初始化。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//reset函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">(<span class="keyword">int</span> *ip)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    *ip = <span class="number">0</span>;</span><br><span class="line">    ip = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">(<span class="keyword">int</span> &amp;i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//主函数中的reset函数的调用</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = i;</span><br><span class="line"><span class="built_in">string</span>::size_type ctr = <span class="number">0</span>;</span><br><span class="line">reset(&amp;i); <span class="comment">//调用形参类型是int*的reset函数</span></span><br><span class="line">reset(&amp;ci); <span class="comment">//错误：不能用指向const int对象的指针初始化int*</span></span><br><span class="line">reset(i); <span class="comment">//调用形参类型是int&amp;的reset函数</span></span><br><span class="line">reset(ci); <span class="comment">//错误：不能把普通引用绑定到const对象ci上</span></span><br><span class="line">reset(<span class="number">42</span>);; <span class="comment">//错误：不能把普通引用绑定到字面值上</span></span><br><span class="line">reset(ctr); <span class="comment">//错误：类型不匹配，ctr是无符号类型</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>以上是关于const的一些总结和初级理解，希望对您全面掌握const的使用规则有一定的帮助。</p>
-
+        
+          <a class="article-more-a" href="/2020/12/28/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bconst/#more">more >></a>
+        
       
+
+
+
+  <div class="declare" hidden="hidden"></div>
+
 
       
     </div>
@@ -285,86 +254,21 @@
 </a>
         
       </header>
+
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>首先说明我的windows版本是windows 10，64位操作系统。非常抱歉，在开始搭建的时候没有准备写这篇博客，所以有些没有图片记录。</p>
-<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="安装配置git"><a href="#安装配置git" class="headerlink" title="安装配置git"></a>安装配置git</h3><ol>
-<li><p><a target="_blank" rel="noopener" href="https://git-scm.com/">git下载地址</a> ，在下载的时候遇到突然暂停的情况，我重试了几次终于成功了。如果你也遇到类似问题，多尝试几次，如果实在不行，，，找其他解决方案吧；</p>
-</li>
-<li><p>下载完成直接点next即可安装成功。安装成功后可以通过系统命令行输入git，命令行一定要用管理员身份打开，如果显示git的若干信息，则表示安装成功；</p>
-</li>
-<li><p>下面就到了环境配置了，重点是配置用户名和邮箱，在此之前需要在<a target="_blank" rel="noopener" href="https://github.com/">github</a>上注册好一个账号。如果你在电脑端遇到网络不流畅，注册不成功等问题，不妨试试在手机端的chorme浏览器进行操作。现在进行环境配置，点击桌面开始图标，找到Git Bash，点击之后出现命令行，输入：</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 配置用户名 </span><br><span class="line"></span><br><span class="line">$git config --global user.name &quot;username&quot;    &#x2F;&#x2F;（ &quot;username&quot;是自己的账户名，） </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 配置邮箱 </span><br><span class="line"></span><br><span class="line">$git config --global user.email &quot;username@email.com&quot;     &#x2F;&#x2F;(&quot;username@email.com&quot;注册账号时用的邮箱)</span><br></pre></td></tr></table></figure>
-
-<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><ol>
-<li><p>hexo是需要nodejs来支持的，<a target="_blank" rel="noopener" href="https://nodejs.org/en/">nodejs下载地址</a>下载第一个LTS长期支持版，每一步点击继续便可安装成功，安装包安装完成后会有两个组件，一个是nodejs本身，一个是npm；</p>
-</li>
-<li><p>打开系统命令行，找到npm的根目录，比如我的就是C:\Users\Program Files，不过如果你的路径已经在系统的Path中，直接输入node -v，npm -v查看node和npm的版本信息（再次提醒：命令行一定要用管理员身份打开），能够看到版本信息，说明nodejs的安装就完成了。</p>
-</li>
-</ol>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/1.png" class>
-
-<h2 id="安装hexo博客框架"><a href="#安装hexo博客框架" class="headerlink" title="安装hexo博客框架"></a>安装hexo博客框架</h2><ol>
-<li>需要借助npm包管理器进行安装</li>
-</ol>
-<p>但是国内的镜像源速度太慢，先通过npm来安装一个cnpm（淘宝的源），在命令行输入npm install -g cnpm –registry=<a target="_blank" rel="noopener" href="http://registry.npm.taobao.org,这里也没有能留下图片,若是成功应该是能看出来的,它会显示花了多少秒.值得一提的是我安装成功后一直无法查看cnpm的版本,最后找到原因是因为没有将cnpm下载到的路径(显示出来的成功信息中可以看出来)放进系统的path中.这里简述一下在系统变量path下添加路径,右键此电脑(我的电脑),选择属性/">http://registry.npm.taobao.org，这里也没有能留下图片，若是成功应该是能看出来的，它会显示花了多少秒。值得一提的是我安装成功后一直无法查看cnpm的版本，最后找到原因是因为没有将cnpm下载到的路径（显示出来的成功信息中可以看出来）放进系统的Path中。这里简述一下在系统变量path下添加路径，右键此电脑（我的电脑），选择属性</a>…</p>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2.png" class>
-
-<p>选择编辑后，添加需要的路径即可。然后命令行输入cnpm -v查看cnpm的版本信息</p>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/3.png" class>
-
-<ol start="2">
-<li>利用cnpm安装hexo框架，在命令行输入cnpm install -g hexo-cli </li>
-</ol>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/4.png" class>
-
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/5.png" class>
-
-<p>出现以上内容，说明安装成功。此时可以查看hexo的版本（hexo -v），验证一下安装是否成功。</p>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/6.png" class>
-
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/7.png" class>
-
-<p>只要你安装成功，便会出现以上内容。</p>
-<h2 id="使用hexo搭建博客"><a href="#使用hexo搭建博客" class="headerlink" title="使用hexo搭建博客"></a>使用hexo搭建博客</h2><ol>
-<li>在自己想要的位置建立一个空的文件夹，如我就在C:\Users\Lenovo路径下建立了一个名为HexoBlog的文件夹</li>
-</ol>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/8.png" class>
-
-<p>建立成功后，你会在该路径下看到该文件夹。所以如果搭建博客过程中，发生什么错误，可以直接将该文件夹删除，大不了从头来过。再进入该文件夹目录下（cd HexoBlog\），利用hexo生成博客(hexo init)</p>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/9.png" class>
-
-<p>…生成成功会有提示语：Start blogging with Hexo!     然后启动博客，命令行输入hexo s</p>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/10.png" class>
-
-<p>它提示此时可以再本地4000端口打开，在浏览器中输入localhost:4000，发现博客已经有了，并且默认创建了一篇名为Hello World的文章。这里简单说一下如何新建一篇博文，命令行输入hexo new “博文的标题”，在已经建立的文章目录下用文本编辑器打开直接在里面写博客，然后#返回blog目录，hexo clean #清理，hexo g #生成，hexo s便可以在4000端口查看。</p>
-<ol start="2">
-<li>将博客部署到github上</li>
-</ol>
-<p>首先登录自己的github账号，建立一个github仓库，github仓库命令必须要符合特定要求：username.github.io（username是你自己的用户名）</p>
-<p>然后回到命令行，在自己创建的博客目录下安装git部署插件，输入cnpm install –save hexo-deployer-git</p>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/11.png" class>
-
-<p>命令行输入dir可以查看文件清单</p>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/12.png" class>
-
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/13.png" class>
-
-<p>_config.yml是重要的配置文件，这里用notepad打开（也可以用其他的方式打开）。</p>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/14.png" style="zoom:80%;">
-
-<p>照上图的红框内添加相应设置（第二个设置为你自己的仓库地址），修改后保存关闭即可。下面部署到github仓库里，命令行输入hexo d，部署完毕后在浏览器输入你仓库的地址username.github.io便可查看博客。部署成功后，输入地址时：这里我又出现了一个小插曲，出现了404错误</p>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/15.png" class>
-
-<p>一开始以为是网络的问题，刷新了多次，还是不行。最后重新在命令行输入hexo d，再次输入地址，发现出现了一个小提示，意思为是否允许什么操作（第一次也出现了只是被我忽略了），点击允许，便出现</p>
-<img src="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/16.png" class>
-
-<p>这是刷新界面便可以看到博客了。至此，大功告成！！！</p>
-
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2>
+        
+          <a class="article-more-a" href="/2020/10/26/follow%E7%A8%8B%E5%BA%8F%E7%BE%8Aup%E4%B8%BB%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more">more >></a>
+        
       
+
+
+
+  <div class="declare" hidden="hidden"></div>
+
 
       
     </div>
@@ -433,24 +337,21 @@
 </a>
         
       </header>
+
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2>
+        
+          <a class="article-more-a" href="/2020/10/23/hello-world/#more">more >></a>
+        
       
+
+
+
+  <div class="declare" hidden="hidden"></div>
+
 
       
     </div>
@@ -501,7 +402,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 John Doe
+    		&copy; 2021 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -532,6 +433,8 @@ if(!isFinite(o.call(this)))throw RangeError("Invalid time value");var t=this,n=t
 return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var e=r(54),i=r(2),o=e.get,u=e.key;e.exp({getOwnMetadata:function(t,n){return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){var e=r(54),i=r(2),o=r(32),u=e.has,c=e.key,f=function(t,n,r){if(u(t,n,r))return!0;var e=o(n);return null!==e&&f(t,e,r)};e.exp({hasMetadata:function(t,n){return f(t,i(n),arguments.length<3?void 0:c(arguments[2]))}})},function(t,n,r){var e=r(54),i=r(2),o=e.has,u=e.key;e.exp({hasOwnMetadata:function(t,n){return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){var e=r(54),i=r(2),o=r(26),u=e.key,c=e.set;e.exp({metadata:function(t,n){return function(r,e){c(t,n,(void 0!==e?i:o)(r),u(e))}}})},function(t,n,r){var e=r(1);e(e.P+e.R,"Set",{toJSON:r(165)("Set")})},function(t,n,r){"use strict";var e=r(1),i=r(147)(!0);e(e.P,"String",{at:function(t){return i(this,t)}})},function(t,n,r){"use strict";var e=r(1),i=r(46),o=r(16),u=r(122),c=r(120),f=RegExp.prototype,a=function(t,n){this._r=t,this._s=n};r(139)(a,"RegExp String",function(){var t=this._r.exec(this._s);return{value:t,done:null===t}}),e(e.P,"String",{matchAll:function(t){if(i(this),!u(t))throw TypeError(t+" is not a regexp!");var n=String(this),r="flags"in f?String(t.flags):c.call(t),e=new RegExp(t.source,~r.indexOf("g")?r:"g"+r);return e.lastIndex=o(t.lastIndex),new a(e,n)}})},function(t,n,r){"use strict";var e=r(1),i=r(181);e(e.P,"String",{padEnd:function(t){return i(this,t,arguments.length>1?arguments[1]:void 0,!1)}})},function(t,n,r){"use strict";var e=r(1),i=r(181);e(e.P,"String",{padStart:function(t){return i(this,t,arguments.length>1?arguments[1]:void 0,!0)}})},function(t,n,r){"use strict";r(82)("trimLeft",function(t){return function(){return t(this,1)}},"trimStart")},function(t,n,r){"use strict";r(82)("trimRight",function(t){return function(){return t(this,2)}},"trimEnd")},function(t,n,r){r(153)("asyncIterator")},function(t,n,r){r(153)("observable")},function(t,n,r){var e=r(1);e(e.S,"System",{global:r(3)})},function(t,n,r){for(var e=r(155),i=r(28),o=r(3),u=r(27),c=r(80),f=r(7),a=f("iterator"),s=f("toStringTag"),l=c.Array,h=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],v=0;v<5;v++){var p,d=h[v],y=o[d],g=y&&y.prototype;if(g){g[a]||u(g,a,l),g[s]||u(g,s,d),c[d]=l;for(p in e)g[p]||i(g,p,e[p],!0)}}},function(t,n,r){var e=r(1),i=r(151);e(e.G+e.B,{setImmediate:i.set,clearImmediate:i.clear})},function(t,n,r){var e=r(3),i=r(1),o=r(121),u=r(207),c=e.navigator,f=!!c&&/MSIE .\./.test(c.userAgent),a=function(t){return f?function(n,r){return t(o(u,[].slice.call(arguments,2),"function"==typeof n?n:Function(n)),r)}:t};i(i.G+i.B+i.F*f,{setTimeout:a(e.setTimeout),setInterval:a(e.setInterval)})},function(t,n,r){r(330),r(269),r(271),r(270),r(273),r(275),r(280),r(274),r(272),r(282),r(281),r(277),r(278),r(276),r(268),r(279),r(283),r(284),r(236),r(238),r(237),r(286),r(285),r(256),r(266),r(267),r(257),r(258),r(259),r(260),r(261),r(262),r(263),r(264),r(265),r(239),r(240),r(241),r(242),r(243),r(244),r(245),r(246),r(247),r(248),r(249),r(250),r(251),r(252),r(253),r(254),r(255),r(317),r(322),r(329),r(320),r(312),r(313),r(318),r(323),r(325),r(308),r(309),r(310),r(311),r(314),r(315),r(316),r(319),r(321),r(324),r(326),r(327),r(328),r(231),r(233),r(232),r(235),r(234),r(220),r(218),r(224),r(221),r(227),r(229),r(217),r(223),r(214),r(228),r(212),r(226),r(225),r(219),r(222),r(211),r(213),r(216),r(215),r(230),r(155),r(302),r(307),r(184),r(303),r(304),r(305),r(306),r(287),r(183),r(185),r(186),r(342),r(331),r(332),r(337),r(340),r(341),r(335),r(338),r(336),r(339),r(333),r(334),r(288),r(289),r(290),r(291),r(292),r(295),r(293),r(294),r(296),r(297),r(298),r(299),r(301),r(300),r(343),r(369),r(372),r(371),r(373),r(374),r(370),r(375),r(376),r(354),r(357),r(353),r(351),r(352),r(355),r(356),r(346),r(368),r(377),r(345),r(347),r(349),r(348),r(350),r(359),r(360),r(362),r(361),r(364),r(363),r(365),r(366),r(367),r(344),r(358),r(380),r(379),r(378),t.exports=r(52)},function(t,n){function r(t,n){if("string"==typeof n)return t.insertAdjacentHTML("afterend",n);var r=t.nextSibling;return r?t.parentNode.insertBefore(n,r):t.parentNode.appendChild(n)}t.exports=r},,,,,,,,,function(t,n,r){(function(n,r){!function(n){"use strict";function e(t,n,r,e){var i=n&&n.prototype instanceof o?n:o,u=Object.create(i.prototype),c=new p(e||[]);return u._invoke=s(t,r,c),u}function i(t,n,r){try{return{type:"normal",arg:t.call(n,r)}}catch(t){return{type:"throw",arg:t}}}function o(){}function u(){}function c(){}function f(t){["next","throw","return"].forEach(function(n){t[n]=function(t){return this._invoke(n,t)}})}function a(t){function n(r,e,o,u){var c=i(t[r],t,e);if("throw"!==c.type){var f=c.arg,a=f.value;return a&&"object"==typeof a&&m.call(a,"__await")?Promise.resolve(a.__await).then(function(t){n("next",t,o,u)},function(t){n("throw",t,o,u)}):Promise.resolve(a).then(function(t){f.value=t,o(f)},u)}u(c.arg)}function e(t,r){function e(){return new Promise(function(e,i){n(t,r,e,i)})}return o=o?o.then(e,e):e()}"object"==typeof r&&r.domain&&(n=r.domain.bind(n));var o;this._invoke=e}function s(t,n,r){var e=P;return function(o,u){if(e===F)throw new Error("Generator is already running");if(e===M){if("throw"===o)throw u;return y()}for(r.method=o,r.arg=u;;){var c=r.delegate;if(c){var f=l(c,r);if(f){if(f===A)continue;return f}}if("next"===r.method)r.sent=r._sent=r.arg;else if("throw"===r.method){if(e===P)throw e=M,r.arg;r.dispatchException(r.arg)}else"return"===r.method&&r.abrupt("return",r.arg);e=F;var a=i(t,n,r);if("normal"===a.type){if(e=r.done?M:j,a.arg===A)continue;return{value:a.arg,done:r.done}}"throw"===a.type&&(e=M,r.method="throw",r.arg=a.arg)}}}function l(t,n){var r=t.iterator[n.method];if(r===g){if(n.delegate=null,"throw"===n.method){if(t.iterator.return&&(n.method="return",n.arg=g,l(t,n),"throw"===n.method))return A;n.method="throw",n.arg=new TypeError("The iterator does not provide a 'throw' method")}return A}var e=i(r,t.iterator,n.arg);if("throw"===e.type)return n.method="throw",n.arg=e.arg,n.delegate=null,A;var o=e.arg;return o?o.done?(n[t.resultName]=o.value,n.next=t.nextLoc,"return"!==n.method&&(n.method="next",n.arg=g),n.delegate=null,A):o:(n.method="throw",n.arg=new TypeError("iterator result is not an object"),n.delegate=null,A)}function h(t){var n={tryLoc:t[0]};1 in t&&(n.catchLoc=t[1]),2 in t&&(n.finallyLoc=t[2],n.afterLoc=t[3]),this.tryEntries.push(n)}function v(t){var n=t.completion||{};n.type="normal",delete n.arg,t.completion=n}function p(t){this.tryEntries=[{tryLoc:"root"}],t.forEach(h,this),this.reset(!0)}function d(t){if(t){var n=t[w];if(n)return n.call(t);if("function"==typeof t.next)return t;if(!isNaN(t.length)){var r=-1,e=function n(){for(;++r<t.length;)if(m.call(t,r))return n.value=t[r],n.done=!1,n;return n.value=g,n.done=!0,n};return e.next=e}}return{next:y}}function y(){return{value:g,done:!0}}var g,b=Object.prototype,m=b.hasOwnProperty,x="function"==typeof Symbol?Symbol:{},w=x.iterator||"@@iterator",S=x.asyncIterator||"@@asyncIterator",_=x.toStringTag||"@@toStringTag",O="object"==typeof t,E=n.regeneratorRuntime;if(E)return void(O&&(t.exports=E));E=n.regeneratorRuntime=O?t.exports:{},E.wrap=e;var P="suspendedStart",j="suspendedYield",F="executing",M="completed",A={},N={};N[w]=function(){return this};var T=Object.getPrototypeOf,I=T&&T(T(d([])));I&&I!==b&&m.call(I,w)&&(N=I);var k=c.prototype=o.prototype=Object.create(N);u.prototype=k.constructor=c,c.constructor=u,c[_]=u.displayName="GeneratorFunction",E.isGeneratorFunction=function(t){var n="function"==typeof t&&t.constructor;return!!n&&(n===u||"GeneratorFunction"===(n.displayName||n.name))},E.mark=function(t){return Object.setPrototypeOf?Object.setPrototypeOf(t,c):(t.__proto__=c,_ in t||(t[_]="GeneratorFunction")),t.prototype=Object.create(k),t},E.awrap=function(t){return{__await:t}},f(a.prototype),a.prototype[S]=function(){return this},E.AsyncIterator=a,E.async=function(t,n,r,i){var o=new a(e(t,n,r,i));return E.isGeneratorFunction(n)?o:o.next().then(function(t){return t.done?t.value:o.next()})},f(k),k[_]="Generator",k.toString=function(){return"[object Generator]"},E.keys=function(t){var n=[];for(var r in t)n.push(r);return n.reverse(),function r(){for(;n.length;){var e=n.pop();if(e in t)return r.value=e,r.done=!1,r}return r.done=!0,r}},E.values=d,p.prototype={constructor:p,reset:function(t){if(this.prev=0,this.next=0,this.sent=this._sent=g,this.done=!1,this.delegate=null,this.method="next",this.arg=g,this.tryEntries.forEach(v),!t)for(var n in this)"t"===n.charAt(0)&&m.call(this,n)&&!isNaN(+n.slice(1))&&(this[n]=g)},stop:function(){this.done=!0;var t=this.tryEntries[0],n=t.completion;if("throw"===n.type)throw n.arg;return this.rval},dispatchException:function(t){function n(n,e){return o.type="throw",o.arg=t,r.next=n,e&&(r.method="next",r.arg=g),!!e}if(this.done)throw t;for(var r=this,e=this.tryEntries.length-1;e>=0;--e){var i=this.tryEntries[e],o=i.completion;if("root"===i.tryLoc)return n("end");if(i.tryLoc<=this.prev){var u=m.call(i,"catchLoc"),c=m.call(i,"finallyLoc");if(u&&c){if(this.prev<i.catchLoc)return n(i.catchLoc,!0);if(this.prev<i.finallyLoc)return n(i.finallyLoc)}else if(u){if(this.prev<i.catchLoc)return n(i.catchLoc,!0)}else{if(!c)throw new Error("try statement without catch or finally");if(this.prev<i.finallyLoc)return n(i.finallyLoc)}}}},abrupt:function(t,n){for(var r=this.tryEntries.length-1;r>=0;--r){var e=this.tryEntries[r];if(e.tryLoc<=this.prev&&m.call(e,"finallyLoc")&&this.prev<e.finallyLoc){var i=e;break}}i&&("break"===t||"continue"===t)&&i.tryLoc<=n&&n<=i.finallyLoc&&(i=null);var o=i?i.completion:{};return o.type=t,o.arg=n,i?(this.method="next",this.next=i.finallyLoc,A):this.complete(o)},complete:function(t,n){if("throw"===t.type)throw t.arg;return"break"===t.type||"continue"===t.type?this.next=t.arg:"return"===t.type?(this.rval=this.arg=t.arg,this.method="return",this.next="end"):"normal"===t.type&&n&&(this.next=n),A},finish:function(t){for(var n=this.tryEntries.length-1;n>=0;--n){var r=this.tryEntries[n];if(r.finallyLoc===t)return this.complete(r.completion,r.afterLoc),v(r),A}},catch:function(t){for(var n=this.tryEntries.length-1;n>=0;--n){var r=this.tryEntries[n];if(r.tryLoc===t){var e=r.completion;if("throw"===e.type){var i=e.arg;v(r)}return i}}throw new Error("illegal catch attempt")},delegateYield:function(t,n,r){return this.delegate={iterator:d(t),resultName:n,nextLoc:r},"next"===this.method&&(this.arg=g),A}}}("object"==typeof n?n:"object"==typeof window?window:"object"==typeof self?self:this)}).call(n,function(){return this}(),r(158))}])</script><script src="/./main.0cf68a.js"></script><script>!function(){!function(e){var t=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(t),t.setAttribute("src",e)}("/slider.e37972.js")}()</script>
 
 
+
+<script  async  src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
   <div class="tools-nav header-menu">
