@@ -384,27 +384,6 @@
 
 
    
-      <div class="valine_comment"></div>
-<!--载入js，在</body>之前插入即可-->
-<!--Leancloud 操作库:-->
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<!--Valine 的核心代码库-->
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-  var notify = 'true' == true ? true : false;
-  var verify = 'false' == true ? true : false;
-  new Valine({
-      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
-      av: AV,
-      el: '.valine_comment',
-      emoticon_url: 'https://cloud.panjunwen.com/alu',
-      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
-      app_id: 'findoh#Leancloud应用的appId',
-      app_key: '1112Yzy!#Leancloud应用的appKey',
-      placeholder: '有话要说？'
-    });
-</script>
-   
   
   
   
@@ -423,8 +402,8 @@ var gitment = new Gitment({
   owner: 'findoh',
   repo: 'findoh.github.io',
   oauth: {
-    client_id: 'findoh',
-    client_secret: '1112yzy111222',
+    client_id: '00a7518f549f05fa45a9',
+    client_secret: 'b1d8433b7887310568bac23ba8e24035ac2c6a96',
   },
 })
 gitment.render('gitment-ctn')
