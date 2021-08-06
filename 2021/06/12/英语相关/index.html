@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>leetcode刷题——数组篇 | Hexo</title>
+  <title>英语相关——商业英语 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="总结了常见数组题目的类型，包括数组的遍历、统计数组中的元素、数组的改变等，每一种类型都有一些典型的例题，有些做了方法的整理、罗列、总结，有些只是陈列，充当相似题目以便于练手。">
+  <meta name="description" content="以下是英语流利说商业英语课程中我所认为的有用的单词、词组以及句子。虽然没能上完这门课，十足浪费，希望整理这些能让我获取些许知识，亡羊补牢。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode刷题——数组篇">
-<meta property="og:url" content="http://example.com/2021/06/13/leetcode%E5%88%B7%E9%A2%98%E2%80%94%E6%95%B0%E7%BB%84%E7%AF%87/index.html">
+<meta property="og:title" content="英语相关——商业英语">
+<meta property="og:url" content="http://example.com/2021/06/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="总结了常见数组题目的类型，包括数组的遍历、统计数组中的元素、数组的改变等，每一种类型都有一些典型的例题，有些做了方法的整理、罗列、总结，有些只是陈列，充当相似题目以便于练手。">
+<meta property="og:description" content="以下是英语流利说商业英语课程中我所认为的有用的单词、词组以及句子。虽然没能上完这门课，十足浪费，希望整理这些能让我获取些许知识，亡羊补牢。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-06-13T12:22:36.000Z">
-<meta property="article:modified_time" content="2021-08-05T12:51:35.239Z">
+<meta property="article:published_time" content="2021-06-12T01:43:16.000Z">
+<meta property="article:modified_time" content="2021-08-06T10:05:15.111Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="leetcode刷题">
+<meta property="article:tag" content="英语相关">
 <meta name="twitter:card" content="summary">
   
   
@@ -154,20 +154,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-leetcode刷题—数组篇" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-英语相关" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      leetcode刷题——数组篇
+      英语相关——商业英语
     </h1>
   
 
         
-        <a href="/2021/06/13/leetcode%E5%88%B7%E9%A2%98%E2%80%94%E6%95%B0%E7%BB%84%E7%AF%87/" class="archive-article-date">
-  	<time datetime="2021-06-13T12:22:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-13</time>
+        <a href="/2021/06/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/" class="archive-article-date">
+  	<time datetime="2021-06-12T01:43:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-12</time>
 </a>
         
       </header>
@@ -176,40 +176,122 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>总结了常见数组题目的类型，包括数组的遍历、统计数组中的元素、数组的改变等，每一种类型都有一些典型的例题，有些做了方法的整理、罗列、总结，有些只是陈列，充当相似题目以便于练手。</p>
+<p>以下是英语流利说商业英语课程中我所认为的有用的单词、词组以及句子。虽然没能上完这门课，十足浪费，希望整理这些能让我获取些许知识，亡羊补牢。</p>
 </blockquote>
 <a id="more"></a>
 
-<h2 id="数组的遍历"><a href="#数组的遍历" class="headerlink" title="数组的遍历"></a>数组的遍历</h2><h4 id="628-三个数的最大乘积"><a href="#628-三个数的最大乘积" class="headerlink" title="628. 三个数的最大乘积"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-product-of-three-numbers/">628. 三个数的最大乘积</a></h4><p>给你一个整型数组 <code>nums</code> ，在数组中找出由三个数组成的最大乘积，并输出这个乘积。</p>
-<p><strong>思路：</strong>这里用的方法很讨巧，我们在给数组排序后，分别求出三个最大正数的乘积，以及两个最小负数与最大正数的乘积，二者之间的最大值即为所求答案。若想减少时间复杂度，只要求出数组中最大的三个数以及最小的两个数，因此我们可以不用排序，用线性扫描直接得出这五个数。</p>
-<p>代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maximumProduct</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    sort(nums.begin(), nums.end());</span><br><span class="line">    <span class="keyword">int</span> n = nums.size();</span><br><span class="line">    **<span class="keyword">return</span> max(nums[<span class="number">0</span>] \* nums[<span class="number">1</span>] \* nums[n - <span class="number">1</span>], nums[n - <span class="number">3</span>] \* nums[n - <span class="number">2</span>] \* nums[n - <span class="number">1</span>]);**</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th align="center">coursework</th>
+<th align="center">field</th>
+<th align="center">scholarship</th>
+<th align="center">honor</th>
+<th align="center">specialist</th>
+<th align="center">associate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">课业</td>
+<td align="center">领域</td>
+<td align="center">奖学金</td>
+<td align="center">荣誉</td>
+<td align="center">专员</td>
+<td align="center">助理</td>
+</tr>
+<tr>
+<td align="center">demanding</td>
+<td align="center">reference</td>
+<td align="center">review</td>
+<td align="center">promote</td>
+<td align="center">detail-oriented</td>
+<td align="center">overpromise</td>
+</tr>
+<tr>
+<td align="center">要求高的</td>
+<td align="center">推荐信</td>
+<td align="center">审查</td>
+<td align="center">推广</td>
+<td align="center">细节党</td>
+<td align="center">承诺过多</td>
+</tr>
+<tr>
+<td align="center">specific</td>
+<td align="center">reliable</td>
+<td align="center">commission</td>
+<td align="center">bonus</td>
+<td align="center">resume</td>
+<td align="center">profile</td>
+</tr>
+<tr>
+<td align="center">具体的</td>
+<td align="center">可靠的</td>
+<td align="center">提成</td>
+<td align="center">奖金</td>
+<td align="center">简历</td>
+<td align="center">概述</td>
+</tr>
+<tr>
+<td align="center">position</td>
+<td align="center">candidate</td>
+<td align="center">qualification</td>
+<td align="center">CV</td>
+<td align="center">trendy</td>
+<td align="center">problem-solving</td>
+</tr>
+<tr>
+<td align="center">职位</td>
+<td align="center">应聘者</td>
+<td align="center">资历</td>
+<td align="center">履历</td>
+<td align="center">时髦的</td>
+<td align="center">解决问题的</td>
+</tr>
+<tr>
+<td align="center">binder</td>
+<td align="center">negotiable</td>
+<td align="center">cabinet</td>
+<td align="center">calendar</td>
+<td align="center">all-in-one</td>
+<td align="center">speakerphone</td>
+</tr>
+<tr>
+<td align="center">活页夹</td>
+<td align="center">可商议的</td>
+<td align="center">储藏柜</td>
+<td align="center">日历</td>
+<td align="center">一体机</td>
+<td align="center">扬声器</td>
+</tr>
+<tr>
+<td align="center">paper shredder</td>
+<td align="center">adapter</td>
+<td align="center">projector</td>
+<td align="center">presentation pointer</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">碎纸机</td>
+<td align="center">适配器</td>
+<td align="center">投影仪</td>
+<td align="center">演示鼠标</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">be experienced in			对某事有经验</span><br><span class="line"></span><br><span class="line">be in charge of 			负责</span><br><span class="line"></span><br><span class="line">be responsible for 			...负责..</span><br><span class="line"></span><br><span class="line">to take the initiative			 带头</span><br><span class="line"></span><br><span class="line">develop ideas&#x2F;software 		表达&#x2F;酝酿&#x2F;拓展想法&#x2F; 开发软件</span><br><span class="line"></span><br><span class="line">maintain good relationships 	维持好的关系</span><br><span class="line"></span><br><span class="line">identify opportunities 		发现机会</span><br><span class="line"></span><br><span class="line">to fill a position			填补职位</span><br><span class="line"></span><br><span class="line">post a job description 		张贴工作描述</span><br><span class="line"></span><br><span class="line">the role of the job			工作职能</span><br><span class="line"></span><br><span class="line">the level of the position		职位级别</span><br><span class="line"></span><br><span class="line">current and prospecctive customers	当前和未来客户</span><br><span class="line"></span><br><span class="line">to apply for 				申请</span><br><span class="line"></span><br><span class="line">to be proficient in 			精通</span><br><span class="line"></span><br><span class="line">you are expected to 		你应该</span><br><span class="line"></span><br><span class="line">bachelor degree 			学士学位</span><br><span class="line"></span><br><span class="line">create a startup 			创建新兴公司</span><br><span class="line"></span><br><span class="line">offical website				官网</span><br><span class="line"></span><br><span class="line">a good fit					合适</span><br><span class="line"></span><br><span class="line">market share				市场份额</span><br><span class="line"></span><br><span class="line">stock price				股票价格</span><br><span class="line"></span><br><span class="line">appealing&#x2F;competitive&#x2F;attractive salary 	有吸引力的薪资</span><br><span class="line"></span><br><span class="line">read between the lines		领会言外之意</span><br><span class="line"></span><br><span class="line">submit resume			提交简历</span><br><span class="line"></span><br><span class="line">leave a good impression 	留下好印象</span><br><span class="line"></span><br><span class="line">welcome on board 			欢迎加入我们</span><br><span class="line"></span><br><span class="line">be well prepared			做好准备</span><br><span class="line"></span><br><span class="line">take the initiative			主动</span><br><span class="line"></span><br><span class="line">an experienced-level position	经验丰富的职位</span><br><span class="line"></span><br><span class="line">brag about your strengths	吹嘘你的长处</span><br><span class="line"></span><br><span class="line">brand awareness			品牌知名度</span><br><span class="line"></span><br><span class="line">at the forefront of			处于最前列</span><br><span class="line"></span><br><span class="line">fit with					适合</span><br><span class="line"></span><br><span class="line">performance review		绩效考核</span><br><span class="line"></span><br><span class="line">keep track of				掌握…的最新消息</span><br></pre></td></tr></table></figure>
 
-<p><strong>总结：</strong>在目标问题只有几种可能结果时，囫囵着求解，最后比较结果，不失为一种省力又讨好的方法。</p>
-<h2 id="统计数组中的元素"><a href="#统计数组中的元素" class="headerlink" title="统计数组中的元素"></a>统计数组中的元素</h2><h4 id="645-错误的集合"><a href="#645-错误的集合" class="headerlink" title="645. 错误的集合"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/set-mismatch/">645. 错误的集合</a></h4><p>集合 s 包含从 1 到 n 的整数。不幸的是，因为数据错误，导致集合里面某一个数字复制了成了集合里面的另外一个数字的值，导致集合 丢失了一个数字 并且 有一个数字重复 。给定一个数组 <code>nums</code> 代表了集合 <code>S</code> 发生错误后的结果。请你找出重复出现的整数，再找到丢失的整数，将它们以数组的形式返回。</p>
-<h4 id="697-数组的度"><a href="#697-数组的度" class="headerlink" title="697. 数组的度"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/degree-of-an-array/">697. 数组的度</a></h4><h4 id="448-找到所有数组中消失的数字"><a href="#448-找到所有数组中消失的数字" class="headerlink" title="448. 找到所有数组中消失的数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/">448. 找到所有数组中消失的数字</a></h4><h4 id="442-数组中重复的数据"><a href="#442-数组中重复的数据" class="headerlink" title="442. 数组中重复的数据"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/">442. 数组中重复的数据</a></h4><h4 id="41-缺失的第一个正数"><a href="#41-缺失的第一个正数" class="headerlink" title="41. 缺失的第一个正数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/first-missing-positive/">41. 缺失的第一个正数</a></h4><blockquote>
-<p>(难想到，但是同样利用数组的索引作为切入点，与下方的总结是同样的思想)</p>
-</blockquote>
-<p><strong>总结：如何统计元素有没有出现，或者有没有重复出现？</strong><br>我们可以直接统计元素出现的次数。当然，有些题目需要我们只能额外使用<strong>常数空间复杂度</strong>来解题。那我们这时候可以仔细读题，观察额外条件，例如每个数都是在[1,n]范围内的，那说明每个数都是正数，而且原数组和我们想用的cnt数组的长度时相同的，我们可以想办法<strong>修改原数组</strong>，使得原数组包含每个数是否出现的信息，比如在遍历至nums[i]时，使nums[nums[i]-1]变为负数，因为nums[i]原来是大于0的，所以在遍历完数组后，nums[i]小于0，说明i+1这个数出现过；或者原先的数都是小于数组长度的，可以使满足条件的对应位的值加上长度值作为标记。</p>
-<h2 id="数组的改变、移动"><a href="#数组的改变、移动" class="headerlink" title="数组的改变、移动"></a>数组的改变、移动</h2><h4 id="453-最小操作次数使数组元素相等"><a href="#453-最小操作次数使数组元素相等" class="headerlink" title="453. 最小操作次数使数组元素相等"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-moves-to-equal-array-elements/">453. 最小操作次数使数组元素相等</a></h4><p>给定一个长度为 <em>n</em> 的 非空 整数数组，每次操作将会使 <em>n</em> - 1 个元素增加 1。找出让数组所有元素相等的最小操作次数。//还没有在有效时间内完成任务！</p>
-<h4 id="方法一-动态规划"><a href="#方法一-动态规划" class="headerlink" title="方法一 动态规划"></a>方法一 动态规划</h4><p>简而言之，我们对数列进行排序，一直更新 <code>moves</code> 以使得直到当前的元素相等，而不改变除了当前元素之外的元素。在整个数组扫描完毕后，<code>moves</code> 即为答案。</p>
-<h4 id="方法二-数学法"><a href="#方法二-数学法" class="headerlink" title="方法二 数学法"></a>方法二 数学法</h4><p>将除了一个元素之外的全部元素+1，等价于将该元素-1，因为我们只对元素的相对大小感兴趣。因此，该问题简化为需要进行的减法次数。显然，我们只需要将所有的数都减到最小的数即可。//特别妙！</p>
-<h4 id="665-非递减数列"><a href="#665-非递减数列" class="headerlink" title="665. 非递减数列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/non-decreasing-array/">665. 非递减数列</a></h4><ul>
-<li>二维数组及滚动数组</li>
-</ul>
-<p><strong>一些想法：</strong>在二维数组中，每个元素都是一个一维数组。有的时候，二维数组的某些元素并不是在整个运算过程中都要用到的。可能只需要用到前一个或前两个一维数组，此时，我们可以用到滚动数组。在滚动数组中，我们用若干个(k)一维数组保存原二维数组中的倒数k个一维数组，并在运算过程中更新这k个一维数组。</p>
-<hr>
-<h2 id="数组的旋转"><a href="#数组的旋转" class="headerlink" title="数组的旋转"></a>数组的旋转</h2><h4 id="189-旋转数组"><a href="#189-旋转数组" class="headerlink" title="189. 旋转数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-array/">189. 旋转数组</a></h4><p>给定一个数组，将数组中的元素向右移动 <code>k</code> 个位置，其中 <code>k</code> 是非负数。</p>
-<h4 id="方法一-环状替换"><a href="#方法一-环状替换" class="headerlink" title="方法一 环状替换"></a>方法一 环状替换</h4><p>可以将被替换的元素保存在变量 \textit{temp}temp 中，从而避免了额外数组的开销。</p>
-<h4 id="方法二-数组翻转"><a href="#方法二-数组翻转" class="headerlink" title="方法二 数组翻转"></a>方法二 数组翻转</h4><p>我们可以先将所有元素翻转，这样尾部的 k\bmod nkmodn 个元素就被移至数组头部，然后我们再翻转 [0, kmod n-1][0,kmodn−1] 区间的元素和 [k mod n, n-1][kmodn,n−1] 区间的元素即能得到最后的答案。</p>
-<h4 id="396-旋转函数"><a href="#396-旋转函数" class="headerlink" title="396. 旋转函数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-function/">396. 旋转函数</a></h4><hr>
-<h2 id="特定顺序遍历二维数组"><a href="#特定顺序遍历二维数组" class="headerlink" title="特定顺序遍历二维数组"></a>特定顺序遍历二维数组</h2><h4 id="54-螺旋矩阵"><a href="#54-螺旋矩阵" class="headerlink" title="54. 螺旋矩阵"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/spiral-matrix/">54. 螺旋矩阵</a></h4><p><strong>调整方向时可利用取余！</strong></p>
-<p>if (nextRow &lt; 0 || nextRow &gt;= n || nextColumn &lt; 0 || nextColumn &gt;= n || matrix[nextRow][nextColumn] != 0) {<br>directionIndex = (directionIndex + 1) % 4; // 顺时针旋转至下一个方向}</p>
-<h4 id="396-旋转函数-1"><a href="#396-旋转函数-1" class="headerlink" title="396. 旋转函数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-function/">396. 旋转函数</a></h4><h4 id="498-对角线遍历"><a href="#498-对角线遍历" class="headerlink" title="498. 对角线遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/diagonal-traverse/">498. 对角线遍历</a></h4><hr>
-<h2 id="二维数组变换"><a href="#二维数组变换" class="headerlink" title="二维数组变换"></a>二维数组变换</h2><h4 id="566-重塑矩阵"><a href="#566-重塑矩阵" class="headerlink" title="566. 重塑矩阵"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reshape-the-matrix/">566. 重塑矩阵</a></h4><h4 id="二维数组的一维表示"><a href="#二维数组的一维表示" class="headerlink" title="二维数组的一维表示"></a><strong>二维数组的一维表示</strong></h4><p>对于 x \in [0, mn)x∈[0,mn)，第 xx 个元素在 \textit{nums}nums 中对应的下标为 (x <del>/</del> n, x<del>%</del> n)(x / n,x % n)，而在新的重塑矩阵中对应的下标为 (x <del>/</del> c, x<del>%</del> c)(x / c,x % c)。</p>
-<h4 id="48-旋转图像"><a href="#48-旋转图像" class="headerlink" title="48. 旋转图像"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-image/">48. 旋转图像</a></h4><p>就是利用环状替换，旋转时对应的坐标不要搞错。</p>
-<h4 id="289-生命游戏"><a href="#289-生命游戏" class="headerlink" title="289. 生命游戏"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/game-of-life/">289. 生命游戏</a></h4><h2 id="前缀和数组"><a href="#前缀和数组" class="headerlink" title="前缀和数组"></a>前缀和数组</h2><h4 id="303-区域和检索-数组不可变"><a href="#303-区域和检索-数组不可变" class="headerlink" title="303. 区域和检索 - 数组不可变"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-query-immutable/">303. 区域和检索 - 数组不可变</a></h4><h4 id="304-二维区域和检索-矩阵不可变"><a href="#304-二维区域和检索-矩阵不可变" class="headerlink" title="304. 二维区域和检索 - 矩阵不可变"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-query-2d-immutable/">304. 二维区域和检索 - 矩阵不可变</a></h4><p><strong>思路：</strong>求区域内的和，可先求前缀和，再用两个前缀和做减法，这样就能“一次计算，终生受益”。</p>
-<h4 id="238-除自身以外数组的乘积"><a href="#238-除自身以外数组的乘积" class="headerlink" title="238. 除自身以外数组的乘积"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/product-of-array-except-self/">238. 除自身以外数组的乘积</a></h4><p>给你一个长度为 n 的整数数组 nums，其中 n &gt; 1，返回输出数组 output ，其中 output[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。<br><strong>思路：</strong>使用前缀和以及后缀和相乘得到结果，为时间常数空间复杂度，要尽可能利用已有的空间大小，如<strong>要输出的结果数组的空间</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">Requirements include work experience, educational background, and skills.	</span><br><span class="line">要求包括工作经验、教育背景和技能</span><br><span class="line">Responsibilities list the main tasks the employee will deal with.				</span><br><span class="line">职责列出员工将要处理的主要任务</span><br><span class="line">Relevant work experience is preferred.		有相关工作经验者优先</span><br><span class="line">Your education background fits perfectly.	你的教育背景非常适合</span><br><span class="line">The job requirements should be specific, and the duties should be clearly defined.	</span><br><span class="line">工作要求要具体，职责要明确</span><br><span class="line">Bigger companies offer better training and promotion opportunities.			</span><br><span class="line">大公司提供更好的培训和晋升机会</span><br><span class="line">You can&#39;t be too careful.					再小心也不为过</span><br><span class="line">CV stands for curriculum vitae. A CV is a written record of a person&#39;s educational background, skills, work history, awards, and so on.When people apply for a position in an academic or scientific field, they are often required to submit a CV.</span><br><span class="line">CV代表简历。简历是一个人的学历、技能、工作经历、获奖情况等的书面记录，当人们申请学术或科学领域的职位时，往往需要提交简历。</span><br><span class="line">A reference is a letter written by someone who knows you and recommends you for a job. It could also refer to the person who writes a reference letter for you.		</span><br><span class="line">推荐信是由认识你并推荐你工作的人写的信。它也可以指代为你写推荐信的人。</span><br><span class="line">It&#39;s good to make eye contact as you listem and respond to questions, but allow it to break occasionally.	当你倾听和回答问题的时候，眼神交流是很好的，但是偶尔让它中断。</span><br><span class="line">This will make you look confident and worthy of respect.	这会让你看起来自信，值得尊敬。</span><br><span class="line">I have a bachelor&#39;s degree in marketing from City University.	</span><br><span class="line">我有市立大学的市场营销学士学位。</span><br><span class="line">I was mainly responsible for conducting marketing research and developing marketing campaigns.	我主要负责进行市场调研和开展市场营销活动。</span><br><span class="line">In your last job, what&#39;s the one achivement that was the most meaningful to you?	</span><br><span class="line">在你上一份工作中，对你来说最有意义的成就是什么？</span><br><span class="line">Instead of randomly dividing the tasks, I suggested we each take on the task we were best at.	我建议我们各自承担自己最擅长的任务，而不是随机划分任务。</span><br><span class="line">One thing I&#39;ve done to deal with this weakness is to prioritize my tasks.	</span><br><span class="line">为了克服这个弱点，我做了一件事，那就是确定我的任务的优先级。</span><br><span class="line">Use examples from your experience to support your point.	用</span><br><span class="line">你经验中的例子来支持你的观点。</span><br><span class="line">Talk about your efforts to improve.	谈谈你为改进所做的努力。</span><br><span class="line">A pop-up store is like a live demo of products.	快闪店就像是产品的现场演示。</span><br><span class="line">I believe this value of innovative thinking would allow me to truly excel at this company.	我相信这种创新思维的价值会让我在这家公司真正出类拔萃。</span><br><span class="line">I&#39;d love to join you because the learning opportunities here will keep me chanllenged and motivated.	我很想加入你们，因为这里的学习机会会让我充满挑战和动力。</span><br><span class="line">What made you want to apply for a job with this company？	</span><br><span class="line">是什么让你想在这家公司申请工作的</span><br><span class="line">Avoid saying things that only benefit you.	避免说只对你有利的话。</span><br><span class="line">Connect your interests and goals with the position.	将你的兴趣和目标与职位联系起来。</span><br><span class="line">The company has great programs for professional training and development.	</span><br><span class="line">公司有很好的专业培训和发展计划。</span><br><span class="line">Speaking of online marketing, where do you see it going right now?	</span><br><span class="line">说到网络营销，你认为它现在的发展方向是什么？</span><br><span class="line">I think an important trend is using big data to personalize marketing.	</span><br><span class="line">我认为一个重要的趋势是利用大数据进行个性化营销。</span><br><span class="line">If you hire me, I would start delivering results from day one.	</span><br><span class="line">如果你雇用我，我会从第一天开始提供结果。</span><br><span class="line">Metion specific skills or positions you would like to achieve.	你想达到的特定技能或职位。</span><br><span class="line">Saying that you want to be CEO in five years can make you seem overly ambitious.	</span><br><span class="line">说你想在五年内成为首席执行官会让你显得过于雄心勃勃。</span><br><span class="line">I would also explore partnerships with content creators on YouTube and TikTok.	</span><br><span class="line">我还将探索与YouTube和TikTok上的内容创作者的合作关系。</span><br><span class="line">You can ask about the position you&#39;re applying for, such as your roles and day-to-day responsibilities.	你可以问一下你申请的职位，比如你的角色和日常职责。</span><br><span class="line">You&#39;ll be missing a chance to learn about your potential employer.	</span><br><span class="line">你将失去一个了解你潜在雇主的机会。</span><br><span class="line">What are the company&#39;s goals for the upcoming year?	公司明年的目标是什么？</span><br><span class="line">And a marketing specialist must be able to deliver good work under pressure.	</span><br><span class="line">营销专家必须能够在压力下完成出色的工作。</span><br><span class="line">In the interview process, an employer may ask you for your salary expectations.	</span><br><span class="line">在面试过程中，雇主可能会问你期望的薪水。</span><br><span class="line">An employee&#39;s benefits package generally includes insurance, stock options, and paid leave.	员工的福利通常包括保险、股票期权和带薪休假。</span><br><span class="line">A job offer usually includes job title, salary, and benefits package.	</span><br><span class="line">工作邀请通常包括职位、薪水和福利待遇。</span><br><span class="line">During a person&#39;s employment years, a sum of money is added to their pension fund regularly.	在一个人的工作年限内，有一笔钱定期存入他们的养老基金。</span><br><span class="line">Medical insurance pays for someone&#39;s medical treatment when they are ill or injured.</span><br><span class="line">医疗保险支付某人生病或受伤时的医疗费用。</span><br><span class="line">Unemployment insurance provides support to unemployed people.	失业保险为失业者提供支持。</span><br><span class="line">Work injury insurance covers an employee&#39;s medical expenses in case of work-related injuries.	工伤保险包括雇员因工负伤的医疗费用。</span><br><span class="line">Maternity insurance covers an employee&#39;s costs related to childbirth.	</span><br><span class="line">生育保险包括雇员与生育有关的费用。</span><br><span class="line">The employee can spend a housing fund on housing-related expenses before retirement.</span><br><span class="line">雇员可以在退休前用住房公积金支付与住房有关的费用。</span><br><span class="line">It&#39;s used for storing office supplies, such as markers, paper clips, tape, and staples.	它用于存放办公用品，如马克笔、回形针、磁带和订书钉。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>​                                                                        </p>
+<p>​                                           </p>
+<p>​                                                    </p>
+<p>​                                                </p>
 
       
 
@@ -220,7 +302,7 @@
     findoh
     <br>
     <strong>本文链接：</strong>
-    http://example.com/2021/06/13/leetcode%E5%88%B7%E9%A2%98%E2%80%94%E6%95%B0%E7%BB%84%E7%AF%87/
+    http://example.com/2021/06/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/
     <br>
     <strong>版权声明：</strong>
     本作品采用
@@ -270,7 +352,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">leetcode刷题</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">英语相关</a>
         		</li>
       		
 		</ul>
@@ -326,7 +408,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/06/13/leetcode%E5%88%B7%E9%A2%98%E2%80%94%E6%95%B0%E7%BB%84%E7%AF%87/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/06/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -340,18 +422,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/06/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E6%80%BB%E7%BB%93%E5%92%8C%E6%80%9D%E8%80%83/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/06/13/leetcode%E5%88%B7%E9%A2%98%E2%80%94%E6%95%B0%E7%BB%84%E7%AF%87/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          数据结构——排序算法的总结和思考
+          leetcode刷题——数组篇
         
       </div>
     </a>
   
   
-    <a href="/2021/06/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">英语相关——商业英语</div>
+    <a href="/2020/12/28/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bconst/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++学习笔记之const</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -391,7 +473,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "Sun Jun 13 2021 20:22:36 GMT+0800",
+  id: "Sat Jun 12 2021 09:43:16 GMT+0800",
   owner: 'findoh',
   repo: 'findoh.github.io',
   oauth: {
