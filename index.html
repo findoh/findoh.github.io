@@ -151,6 +151,118 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MFC—完全端口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="深入探索-MFC-完全端口：高性能网络编程的利器"><a href="#深入探索-MFC-完全端口：高性能网络编程的利器" class="headerlink" title="深入探索 MFC 完全端口：高性能网络编程的利器"></a>深入探索 MFC 完全端口：高性能网络编程的利器</h1><p>没想到24年一整年没有一篇文档输出，是时候开始了。用很久之前的项目所用的MFC一个小模型，作为一个起点来谈一谈吧。</p>
+<p>在网络编程的领域中，MFC（Microsoft Foundation Classes）为开发者提供了丰富的工具和类库，助力构建各类网络应用。其中，MFC 完全端口是一种备受关注的高性能网络编程模型，它为实现高效、稳定的网络通信提供了强大支持。今天，就让我们深入探索 MFC 完全端口的奥秘。</p>
+<h2 id="一、MFC-完全端口是什么"><a href="#一、MFC-完全端口是什么" class="headerlink" title="一、MFC 完全端口是什么"></a>一、MFC 完全端口是什么</h2><p>MFC 完全端口基于 Windows Sockets，利用了 Windows 操作系统提供的 I/O 完成端口（I/O Completion Ports）机制。I/O 完成端口是一种异步 I/O 模型，它允许应用程序在多个 I/O 操作同时进行时，高效地处理这些操作的完成通知。在 MFC 中，通过封装和运用 I/O 完成端口，形成了 MFC 完全端口模型，使得开发者能够更便捷地实现高性能的网络通信。</p>
+<h2 id="二、MFC-完全端口的工作原理"><a href="#二、MFC-完全端口的工作原理" class="headerlink" title="二、MFC 完全端口的工作原理"></a>二、MFC 完全端口的工作原理</h2><ol>
+<li><p><strong>创建完成端口对象</strong>：在使用 MFC 完全端口时，首先需要创建一个 I/O 完成端口对象。这个对象就像是一个管理中心，负责接收和处理来自各个 I/O 操作的完成通知。例如，在一个即时通讯服务器中，创建的完成端口将统筹管理所有客户端连接的 I/O 操作通知。</p>
+</li>
+<li><p><strong>关联 Socket 到完成端口</strong>：将用于网络通信的 Socket 与创建好的完成端口进行关联。这样，当 Socket 上有 I/O 操作（如接收数据、发送数据）完成时，系统会将对应的完成通知发送到该完成端口。假设在一个文件传输系统中，每个用于传输文件的 Socket 都与完成端口关联，一旦有数据传输完成，完成端口就能及时收到通知并进行后续处理。</p>
+</li>
+<li><p><strong>线程池的运用</strong>：为了高效地处理大量的 I/O 完成通知，MFC 完全端口通常会配合使用线程池。线程池中的线程会不断地从完成端口中获取完成通知，并执行相应的处理逻辑。例如，当接收到数据到达的通知时，线程会从 Socket 中读取数据并进行后续处理。在一个在线游戏服务器中，大量玩家同时进行游戏操作，产生大量的 I/O 请求，线程池中的线程就可以并行处理这些完成通知，保证游戏的流畅运行。</p>
+</li>
+</ol>
+<h2 id="三、MFC-完全端口与其他端口复用方式对比"><a href="#三、MFC-完全端口与其他端口复用方式对比" class="headerlink" title="三、MFC 完全端口与其他端口复用方式对比"></a>三、MFC 完全端口与其他端口复用方式对比</h2><h3 id="性能表现"><a href="#性能表现" class="headerlink" title="性能表现"></a>性能表现</h3><ul>
+<li><p><strong>MFC 完全端口</strong>：采用异步 I/O 模型，配合线程池机制，在处理大量并发连接时，能让 CPU 在 I/O 操作等待时处理其他任务，大大提升了 CPU 利用率 ，减少响应延迟。在高并发场景下，如大型网络游戏服务器，能轻松应对上万玩家同时在线，保障游戏操作指令的及时处理和数据同步。</p>
+</li>
+<li><p><strong>传统端口复用（如 select 模型）</strong>：通过轮询检查多个 Socket 的状态来实现端口复用。随着并发连接数增加，轮询开销剧增，CPU 大部分时间浪费在检查无用的 Socket 状态上，导致响应速度变慢，无法满足高并发场景需求。例如，当连接数达到几百时，延迟就会明显增加。</p>
+</li>
+</ul>
+<h3 id="资源占用"><a href="#资源占用" class="headerlink" title="资源占用"></a>资源占用</h3><ul>
+<li><p><strong>MFC 完全端口</strong>：线程池的使用较为高效，根据实际 I/O 负载动态调整线程工作，避免过多线程创建与销毁带来的资源浪费。同时，I/O 完成端口对系统资源的管理较为精细，在大量并发连接时，内存和 CPU 资源占用相对稳定。</p>
+</li>
+<li><p><strong>传统端口复用（如 poll 模型）</strong>：为了维持对大量 Socket 的监控，需要消耗大量内存来存储 Socket 状态信息。并且由于频繁的轮询操作，CPU 资源消耗随着连接数增加而线性上升，很容易造成资源耗尽。</p>
+</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li><p><strong>MFC 完全端口</strong>：适用于对性能和稳定性要求极高的场景，如网络游戏服务器、即时通讯系统、分布式系统等。这些场景需要处理海量并发连接和频繁的 I/O 操作，MFC 完全端口的高性能和稳定性能够充分发挥优势。</p>
+</li>
+<li><p><strong>传统端口复用</strong>：在并发连接数较少、对实时性要求不高的简单网络应用中仍有一定应用价值，如小型局域网内的文件共享服务，由于连接数有限，传统端口复用方式简单易实现，成本较低。</p>
+</li>
+</ul>
+<h2 id="四、MFC-完全端口的优势"><a href="#四、MFC-完全端口的优势" class="headerlink" title="四、MFC 完全端口的优势"></a>四、MFC 完全端口的优势</h2><ol>
+<li><p><strong>高性能</strong>：通过异步 I/O 和线程池的结合，MFC 完全端口能够在处理大量并发连接时，保持较低的系统开销和较高的响应速度。相比于传统的同步 I/O 模型，它避免了线程在等待 I/O 操作完成时的阻塞，大大提高了 CPU 的利用率。在一个电商抢购活动中，大量用户同时访问服务器，MFC 完全端口能快速响应每个用户的请求，保证抢购活动的顺利进行。</p>
+</li>
+<li><p><strong>稳定性</strong>：由于 I/O 完成端口机制对 I/O 操作的统一管理和调度，MFC 完全端口在处理复杂的网络环境和大量并发请求时，表现出更好的稳定性，减少了因网络波动或高负载导致的程序崩溃或异常情况。例如在金融交易系统中，即使在交易高峰时段，MFC 完全端口也能稳定运行，确保每一笔交易数据的准确传输和处理。</p>
+</li>
+<li><p><strong>可扩展性</strong>：线程池的设计使得 MFC 完全端口具有良好的可扩展性。当需要处理更多的并发连接或 I/O 操作时，只需适当调整线程池的大小，就可以轻松应对不断增长的业务需求。以在线教育平台为例，随着用户数量的增加，通过增加线程池中的线程数量，就能满足更多学生同时在线学习的需求。</p>
+</li>
+</ol>
+<h2 id="五、MFC-完全端口的使用场景"><a href="#五、MFC-完全端口的使用场景" class="headerlink" title="五、MFC 完全端口的使用场景"></a>五、MFC 完全端口的使用场景</h2><ol>
+<li><p><strong>网络游戏服务器</strong>：网络游戏通常需要处理大量玩家的并发连接，对网络通信的性能和稳定性要求极高。MFC 完全端口的高性能和稳定性使其非常适合用于开发网络游戏服务器，能够确保游戏在高负载下的流畅运行。比如《英雄联盟》这种大型多人在线竞技游戏，在比赛高峰期，大量玩家同时在线，MFC 完全端口可以高效处理玩家的操作指令、游戏数据同步等，保证游戏的实时性和稳定性。</p>
+</li>
+<li><p><strong>即时通讯系统</strong>：即时通讯系统需要实时地接收和发送大量的消息，对响应速度要求严格。MFC 完全端口能够快速处理大量的 I/O 操作，满足即时通讯系统对实时性的要求。像微信这样的即时通讯软件，每天有数十亿条消息在服务器和客户端之间传输，MFC 完全端口可以快速处理这些消息的收发，让用户感受到即时通信的便捷。</p>
+</li>
+<li><p><strong>分布式系统</strong>：在分布式系统中，各个节点之间需要频繁地进行数据交换和通信。MFC 完全端口的可扩展性和高性能，使其能够在分布式系统中有效地管理和处理大量的网络连接，保障系统的高效运行。例如，在一个大型电商的分布式订单处理系统中，各个节点之间需要快速传递订单信息、库存信息等，MFC 完全端口可以确保这些数据的及时传输和处理。</p>
+</li>
+</ol>
+<h2 id="六、使用-MFC-完全端口的注意点"><a href="#六、使用-MFC-完全端口的注意点" class="headerlink" title="六、使用 MFC 完全端口的注意点"></a>六、使用 MFC 完全端口的注意点</h2><ol>
+<li><p><strong>线程安全</strong>：由于使用了线程池，多线程同时访问共享资源时可能会出现线程安全问题。例如，多个线程同时访问和修改同一个数据结构，可能导致数据不一致。在代码中，需要合理使用互斥锁（如CRITICAL_SECTION）、信号量（SEMAPHORE）等同步机制来保护共享资源。</p>
+</li>
+<li><p><strong>内存管理</strong>：在创建和销毁 Socket 数据结构体、I/O 数据结构体时，要注意内存的分配和释放。如果内存分配后没有及时释放，会导致内存泄漏。例如，在上述代码示例中，new PER_SOCKET_DATA和new PER_IO_DATA分配的内存，在不再使用时（如关闭 Socket 时）需要及时delete。</p>
+</li>
+<li><p><strong>错误处理</strong>：网络通信中可能会出现各种错误，如连接超时、网络中断等。在代码中要对各种可能出现的错误进行全面的处理，确保程序的健壮性。例如，在WSARecv、bind、listen等函数调用后，要及时检查返回值，根据不同的错误码进行相应的处理，如提示用户错误信息、重新连接等。</p>
+</li>
+<li><p><strong>资源限制</strong>：虽然 MFC 完全端口性能优越，但系统资源是有限的。创建过多的线程、Socket 连接等可能会耗尽系统资源。要根据服务器的硬件配置和实际业务需求，合理设置线程池大小、最大连接数等参数，避免资源耗尽导致程序崩溃。</p>
+</li>
+</ol>
+<h2 id="七、MFC-完全端口的代码示例"><a href="#七、MFC-完全端口的代码示例" class="headerlink" title="七、MFC 完全端口的代码示例"></a>七、MFC 完全端口的代码示例</h2><p>下面是一个简单的 MFC 完全端口的代码示例，展示了如何创建完成端口、关联 Socket 以及处理 I/O 完成通知。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;afxwin.h&gt;</span><br><span class="line">#include &lt;afxsock.h&gt;</span><br><span class="line">#include &lt;windows.h&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 定义一个结构体用于存储Socket和相关数据</span><br><span class="line">typedef struct _PER_SOCKET_DATA</span><br><span class="line">&#123;</span><br><span class="line">    SOCKET sock;</span><br><span class="line">    char buffer[1024];</span><br><span class="line">&#125; PER_SOCKET_DATA, *LPPER_SOCKET_DATA;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 定义一个结构体用于存储完成端口的上下文数据</span><br><span class="line">typedef struct _PER_IO_DATA</span><br><span class="line">&#123;</span><br><span class="line">    OVERLAPPED overlapped;</span><br><span class="line">    WSABUF wsaBuf;</span><br><span class="line">    DWORD dwBytesTransferred;</span><br><span class="line">    DWORD dwFlags;</span><br><span class="line">&#125; PER_IO_DATA, *LPPER_IO_DATA;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 线程函数，用于从完成端口获取I&#x2F;O完成通知并处理</span><br><span class="line">DWORD WINAPI WorkerThread(LPVOID lpParam)</span><br><span class="line">&#123;</span><br><span class="line">    HANDLE hCompletionPort &#x3D; (HANDLE)lpParam;</span><br><span class="line">    LPPER_SOCKET_DATA perSocketData;</span><br><span class="line">    LPPER_IO_DATA perIoData;</span><br><span class="line">    DWORD dwBytesTransferred;</span><br><span class="line">    ULONG_PTR completionKey;</span><br><span class="line"></span><br><span class="line">    while (true)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 从完成端口获取I&#x2F;O完成通知</span><br><span class="line">        if (!GetQueuedCompletionStatus(hCompletionPort, &amp;dwBytesTransferred, &amp;completionKey, (LPOVERLAPPED *)&amp;perIoData, INFINITE))</span><br><span class="line">        &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        perSocketData &#x3D; (LPPER_SOCKET_DATA)completionKey;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 处理接收到的数据</span><br><span class="line">        if (dwBytesTransferred &gt; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F; 这里可以添加具体的数据处理逻辑</span><br><span class="line">            perIoData-&gt;wsaBuf.len &#x3D; sizeof(perSocketData-&gt;buffer);</span><br><span class="line">            perIoData-&gt;wsaBuf.buf &#x3D; perSocketData-&gt;buffer;</span><br><span class="line">            perIoData-&gt;dwBytesTransferred &#x3D; 0;</span><br><span class="line">            perIoData-&gt;dwFlags &#x3D; 0;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 继续接收数据</span><br><span class="line">            if (WSARecv(perSocketData-&gt;sock, &amp;perIoData-&gt;wsaBuf, 1, &amp;perIoData-&gt;dwBytesTransferred, &amp;perIoData-&gt;dwFlags, &amp;perIoData-&gt;overlapped, NULL) &#x3D;&#x3D; SOCKET_ERROR)</span><br><span class="line">            &#123;</span><br><span class="line">                if (WSAGetLastError()!&#x3D; WSA_IO_PENDING)</span><br><span class="line">                &#123;</span><br><span class="line">                    &#x2F;&#x2F; 处理错误</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F; 关闭Socket</span><br><span class="line">            closesocket(perSocketData-&gt;sock);</span><br><span class="line">            delete perSocketData;</span><br><span class="line">            delete perIoData;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; 初始化Windows Sockets</span><br><span class="line">    WSADATA wsaData;</span><br><span class="line">    if (WSAStartup(MAKEWORD(2, 2), &amp;wsaData)!&#x3D; 0)</span><br><span class="line">    &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 创建完成端口</span><br><span class="line">    HANDLE hCompletionPort &#x3D; CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 创建监听Socket</span><br><span class="line">    SOCKET listenSock &#x3D; socket(AF_INET, SOCK_STREAM, 0);</span><br><span class="line">    if (listenSock &#x3D;&#x3D; INVALID_SOCKET)</span><br><span class="line">    &#123;</span><br><span class="line">        WSACleanup();</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 绑定地址和端口</span><br><span class="line">    sockaddr_in sin;</span><br><span class="line">    sin.sin_family &#x3D; AF_INET;</span><br><span class="line">    sin.sin_addr.s_addr &#x3D; INADDR_ANY;</span><br><span class="line">    sin.sin_port &#x3D; htons(12345);</span><br><span class="line">    if (bind(listenSock, (sockaddr *)&amp;sin, sizeof(sin)) &#x3D;&#x3D; SOCKET_ERROR)</span><br><span class="line">    &#123;</span><br><span class="line">        closesocket(listenSock);</span><br><span class="line">        WSACleanup();</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 开始监听</span><br><span class="line">    if (listen(listenSock, 5) &#x3D;&#x3D; SOCKET_ERROR)</span><br><span class="line">    &#123;</span><br><span class="line">        closesocket(listenSock);</span><br><span class="line">        WSACleanup();</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 创建线程池</span><br><span class="line">    const int THREAD_COUNT &#x3D; 4;</span><br><span class="line">    HANDLE hThreads[THREAD_COUNT];</span><br><span class="line">    for (int i &#x3D; 0; i &lt; THREAD_COUNT; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        hThreads[i] &#x3D; CreateThread(NULL, 0, WorkerThread, (LPVOID)hCompletionPort, 0, NULL);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 接受客户端连接</span><br><span class="line">    while (true)</span><br><span class="line">    &#123;</span><br><span class="line">        SOCKET clientSock &#x3D; accept(listenSock, NULL, NULL);</span><br><span class="line">        if (clientSock &#x3D;&#x3D; INVALID_SOCKET)</span><br><span class="line">        &#123;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 创建Socket数据结构体</span><br><span class="line">        LPPER_SOCKET_DATA perSocketData &#x3D; new PER_SOCKET_DATA;</span><br><span class="line">        perSocketData-&gt;sock &#x3D; clientSock;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 将Socket关联到完成端口</span><br><span class="line">        CreateIoCompletionPort((HANDLE)clientSock, hCompletionPort, (ULONG_PTR)perSocketData, 0);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 创建I&#x2F;O数据结构体</span><br><span class="line">        LPPER_IO_DATA perIoData &#x3D; new PER_IO_DATA;</span><br><span class="line">        ZeroMemory(&amp;perIoData-&gt;overlapped, sizeof(OVERLAPPED));</span><br><span class="line">        perIoData-&gt;wsaBuf.len &#x3D; sizeof(perSocketData-&gt;buffer);</span><br><span class="line">        perIoData-&gt;wsaBuf.buf &#x3D; perSocketData-&gt;buffer;</span><br><span class="line">        perIoData-&gt;dwBytesTransferred &#x3D; 0;</span><br><span class="line">        perIoData-&gt;dwFlags &#x3D; 0;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 开始接收数据</span><br><span class="line">        if (WSARecv(clientSock, &amp;perIoData-&gt;wsaBuf, 1, &amp;perIoData-&gt;dwBytesTransferred, &amp;perIoData-&gt;dwFlags, &amp;perIoData-&gt;overlapped, NULL) &#x3D;&#x3D; SOCKET_ERROR)</span><br><span class="line">        &#123;</span><br><span class="line">            if (WSAGetLastError()!&#x3D; WSA_IO_PENDING)</span><br><span class="line">            &#123;</span><br><span class="line">                &#x2F;&#x2F; 处理错误</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 关闭线程和资源</span><br><span class="line">    for (int i &#x3D; 0; i &lt; THREAD_COUNT; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        CloseHandle(hThreads[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    closesocket(listenSock);</span><br><span class="line">    CloseHandle(hCompletionPort);</span><br><span class="line">    WSACleanup();</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个示例代码展示了一个简单的服务器端程序，使用 MFC 完全端口模型来接受客户端连接并处理数据接收。实际应用中，还需要根据具体需求进行更复杂的功能扩展和错误处理。</p>
+<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>MFC 完全端口作为一种高性能的网络编程模型，为开发者提供了强大的工具和技术支持，使得在 Windows 平台上构建高效、稳定的网络应用变得更加容易。通过深入理解其原理、优势和使用场景，对比与其他端口复用方式的差异，并结合实际的代码实践，同时注意使用过程中的各种要点，开发者能够充分发挥 MFC 完全端口的潜力，满足各种复杂的网络通信需求。在未来的网络编程领域，MFC 完全端口将继续发挥重要作用，助力开发者创造出更多优秀的网络应用。</p>
+
+      
+
+
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2025/02/09/MFC%E2%80%94%E5%AE%8C%E5%85%A8%E7%AB%AF%E5%8F%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Git-常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -822,7 +934,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 John Doe
+    		&copy; 2025 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
